@@ -61,5 +61,4 @@ variable "worker_sku" {
 variable "key_name" {
   description = "The key pair name for the EC2 instance"
   type        = string
-  default     = "lab-kp"
 }
