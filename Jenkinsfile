@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'workerNode'}
 
     environment {
         CONTAINER_NAME = "todolist-app"
@@ -42,7 +42,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run -d --name ${CONTAINER_NAME} ${DOCKER_IMAGE}"
+                    sh "docker run -d --name ${CONTAINER_NAME} -p 3000:3000 ${DOCKER_IMAGE}"
                 }
             }
         }

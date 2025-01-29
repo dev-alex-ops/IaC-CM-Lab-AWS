@@ -45,6 +45,16 @@
   apt:
     update_cache: yes
 
+- name: Install fontconfig
+  ansible.builtin.apt:
+    name: fontconfig
+    state: present
+
+- name: Install OpenJDK 17
+  ansible.builtin.apt:
+    name: openjdk-17-jre
+    state: present
+
 - name: Install Docker packages
   apt:
     name:
@@ -55,3 +65,20 @@
       - docker-compose-plugin
     state: present
 
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+
+- name: Start and enable Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Notify reinitialization of Worker Session
+  debug:
+    msg: >
+      The user {{ ansible_user }} has been added to the docker group.
+      Please, if your are already logged, log out and log back in to apply group membership changes.
