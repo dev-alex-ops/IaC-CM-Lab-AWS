@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        CONTAINER_NAME = 'todolist-app'
+        CONTAINER_NAME = "todolist-app"
         BUILD_TAG = "${env.BUILD_NUMBER}"
         DOCKER_IMAGE = "${CONTAINER_NAME}:${BUILD_TAG}"
-        REPO_URL = 'https://github.com/dev-alex-ops/todo-list-react'
+        REPO_URL = "https://github.com/dev-alex-ops/todo-list-react"
     }
 
     stages {
@@ -50,7 +50,7 @@ pipeline {
     
     post {
         always {
-            sh 'docker system prune -af'
+            sh "docker system prune -af"
         }
     }
 }
