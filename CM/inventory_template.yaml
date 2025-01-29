@@ -1,6 +1,6 @@
 all:
   children:
-    jenkins_server:
+    jenkins_master:
       hosts:
         jenkins_server:
           ansible_host: "{{ jenkins_master_ip }}"
