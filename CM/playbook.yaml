@@ -1,0 +1,12 @@
+---
+    - name: Jenkins Server Installation
+      hosts: jenkins_server
+      roles:
+        - jenkins_installation
+      become: yes
+    
+    - name: Jenkins Worker Provisioning
+      hosts: jenkins_worker
+      roles:
+        - worker_provisioning
+      become: yes
